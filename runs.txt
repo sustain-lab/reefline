@@ -1,0 +1,82 @@
+2022/02/22
+----------
+
+No car models, only the wood base.
+
+Orthogonal waves; 21' mean water depth (unscaled)
+-------------------------------------------------
+
+1: a = 0.025, f = 0.71; start: 18:33 UTC, 5 minutes;
+2: a = 0.050, f = 0.50; start: 18:40 UTC, 2 minutes;
+3: a = 0.025, f = 1.00; start: 18:45 UTC, 2 minutes;
+4: a = 0.050, f = 0.71; start: 18:50 UTC, 2 minutes;
+5: a = 0.050, f = 0.36; start: 18:55 UTC, 2 minutes;
+
+2022/02/23
+----------
+
+Car models mounted.
+
+Orthogonal waves; 21' mean water depth (unscaled)
+-------------------------------------------------
+1: a = 0.03, f = 0.64; start: 15:33 UTC, 30 seconds;
+2: a = 0.03, f = 0.64; start: 15:34 UTC, 5 minutes;
+3: a = 0.06, f = 0.45; start: 15:49 UTC, 30 seconds;
+4: a = 0.06, f = 0.45; start: 15:52 UTC, 2 minutes;
+
+30 degree oblique waves; 21' mean water depth (unscaled)
+--------------------------------------------------------
+1: a = 0.03, f = 0.64; start: 16:06 UTC, 2 minutes;
+2: a = 0.03, f = 0.64; start: 16:11 UTC, 30 seconds;
+3: a = 0.06, f = 0.45; start: 16:14 UTC, 2 minutes;
+4: a = 0.06, f = 0.45; start: 16:18 UTC, 30 seconds;
+
+45 degree oblique waves; 21' mean water depth (unscaled)
+--------------------------------------------------------
+1: a = 0.06, f = 0.89; start: 16:38 UTC, 30 seconds;
+2: a = 0.06, f = 0.89; start: 16:42 UTC, 2 minutes; 
+3: a = 0.03, f = 0.89; start: 16:48 UTC, 30 seconds;
+4: a = 0.03, f = 0.89; start: 16:50 UTC, 2 minutes;
+5: a = 0.06, f = 0.64; start: 16:54 UTC, 30 seconds; 
+6: a = 0.06, f = 0.64; start: 16:57 UTC, 2 minutes;
+
+10 degree oblique waves; 21' mean water depth (unscaled)
+--------------------------------------------------------
+1: a = 0.06, f = 0.32; start: 17:21 UTC, 30 seconds;
+2: a = 0.06, f = 0.32; start: 17:24 UTC, 2 minutes; 
+
+--------------------------------------------------------
+Surfrider
+
+10 degree oblique waves; 21' mean water depth (unscaled)
+--------------------------------------------------------
+1: a = 0.06, f = 0.32; start: 19:02 UTC, 30 seconds;
+2: a = 0.06, f = 0.32; start: 19:04 UTC, 2 minutes;
+3: a = 0.06, f = 0.32; start: 19:09 UTC, 30 seconds;
+
+30 degree oblique waves; 21' mean water depth (unscaled)
+--------------------------------------------------------
+1: a = 0.03, f = 0.64; start: 19:24 UTC, 30 seconds;
+2: a = 0.03, f = 0.64; start: 19:26 UTC, 1 minute;
+3: a = 0.06, f = 0.45; start: 19:29 UTC, 30 seconds;
+4: a = 0.06, f = 0.45; start: 19:31 UTC, 30 seconds;
+
+45 degree oblique waves; 21' mean water depth (unscaled)
+--------------------------------------------------------
+1: a = 0.03, f = 0.89; start: 19:47 UTC, 30 seconds;
+2: a = 0.03, f = 0.89; start: 19:49 UTC, 30 seconds;
+3: a = 0.06, f = 0.64; start: 19:52 UTC, 30 seconds;
+4: a = 0.06, f = 0.64; start: 19:54 UTC, 30 seconds;
+
+---------------------------------------------------------
+Brian's class
+
+45 degree oblique waves; 21' mean water depth (unscaled)
+--------------------------------------------------------
+1: a = 0.06, f = 0.64; start: 20:40 UTC
+2: a = 0.06, f = 0.64; start: 20:43 UTC
+3: a = 0.06, f = 0.64; start: 20:46 UTC
+4: a = 0.06, f = 0.64, angle 30 deg.; start: 20:54 UTC
+5: JONSWAP, Hs = 0.08, Tp = 1; start: ?
+6: JONSWAP, Hs = 0.08, Tp = 1; shortcrested; start: 21:01 UTC
+7: a = 0.03, f = 0.89; start: 21:03 UTC

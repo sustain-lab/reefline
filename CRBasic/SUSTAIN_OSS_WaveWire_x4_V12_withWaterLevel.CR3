@@ -1,0 +1,167 @@
+'SUSTAIN_OSS_WaveWire_x4_V12.CR3
+'
+' 27 Feb 2018
+'program author: Dr. Neil J Williams (nwilliams@cstars.miami.edu)
+'latest revision: 17 Feb 2020 njw adjusted wave wire 4 water level offset
+'14 Jan 2020 by njw added new 1.5m wave wire in position 4
+'27 Feb 2018 adapted from OSS_WaveWire_x1_V10.CR1
+  
+'
+'this version gathers serial data from individual OSS wave wires (WaveStaff III)
+'Input channels: 
+'Com 1 Wave Wire #1
+'Com 2 Wave Wire #2
+'Com 3 Wave Wire #3
+'Com 4 Wave Wire #4
+'
+'SDM Port Usage: not used in this version
+' (was connect to SDM-SIO4 address 0 device for ADV and OSS synchronizer serial input)
+'
+'CRBasic angle units are in Radians by default.
+
+'\\\\\\\\\\\\\\\\\\\\\\\\\ DECLARATIONS /////////////////////////
+StationName ("OSSwaveX4") 
+Public PTemp, batt_volt
+'Dim ii As Long 'counters
+Public OSS_WWire(4) 'Digital Wave wire output (raw data is counts of 4096 max representing 2000 mm (for this application)) for each of the 4 wires)
+Public OSS_WDepth(4) 'Water depth correction to OSS_WWire outputs
+Public OSS_raw As String *10 ', OSS_parts(6) As String *4
+Public OSSnbr 'no of bytes returned
+Public OSS_count
+
+
+Units OSS_WWire=m
+Units OSS_WDepth=m
+Units batt_volt=V
+Units PTemp=DegC
+'------------------------------------------------
+
+
+
+'\\\\\\\\\\\\\\\\\\\\\\\\ OUTPUT SECTION ////////////////////////
+
+
+
+'Define Data Tables
+  '20 Hz -> 1/20 = 0.050 s = 50 msec
+  '10 Hz -> 1/10 = 0.100 s = 100 msec
+  '05 Hz -> 1/5 = 0.20 s = 200 msec
+
+
+
+DataTable (Elevation,1,-1)  '20 Hz -> 1/20 = 0.050 s = 50 msec
+  'CardOut(1,-1)
+  'OpenInterval
+  DataInterval (0,50,mSec,10)
+  TableFile ("CRD:"&Status.StationName(1,1)&".elev_",64,-2,0,1,Hr,0,0)  
+  Sample(4,OSS_WWire(),IEEE4)
+  Sample(4,OSS_WDepth(), IEEE4)
+  'Sample(1,OSS_WWire(),IEEE4)
+
+EndTable
+
+
+
+
+
+ '------- AUX time sync, etc ---------------------
+'------------------------------------------------
+Public TimerrMSec
+
+DataTable(AUX,1,-1)
+  'CardOut(1,-1)
+  DataInterval(0,5,min,10)
+  TableFile ("CRD:"&Status.StationName(1,1)&".AUX_",64,-2,0,1,Hr,0,0)  
+  Sample(1,TimerrMSec,IEEE4)
+  StdDev (4,OSS_WWire(),IEEE4,False)
+ ' StdDev (1,OSS_WWire,IEEE4,False)
+  Average(1,PTemp,IEEE4,False)
+  Average (4,OSS_WWire(),IEEE4,False)
+  'Average (1,OSS_WWire(),IEEE4,False)
+  Minimum (1,batt_volt,FP2,0,False)
+EndTable
+Units TimerrMSec = msec
+
+
+
+
+
+
+'\\\\\\\\\\\\\\\\\\\\\\\\\ SUBROUTINES //////////////////////////
+'Define Subroutine
+'Sub
+'EnterSub instructions
+'EndSub
+
+
+'\\\\\\\\\\\\\\\\\\\\\\\\\\\ PROGRAM ////////////////////////////
+
+'Main Program
+BeginProg
+    'SerialOpen(Com2,38400,0,0,100) 'OSS wave data, ASCII, 32 bytes per record
+    SerialOpen(Com1,9600,0,0,100) 'OSS wave data, ASCII, 32 bytes per record
+    SerialFlush(Com1) 'Clear the buffers
+    SerialOpen(Com2,9600,0,0,100) 'OSS wave data, ASCII, 32 bytes per record
+    SerialFlush(Com2) 'Clear the buffers
+    SerialOpen(Com3,9600,0,0,100) 'OSS wave data, ASCII, 32 bytes per record
+    SerialFlush(Com3) 'Clear the buffers
+    SerialOpen(Com4,9600,0,0,100) 'OSS wave data, ASCII, 32 bytes per record
+    SerialFlush(Com4) 'Clear the buffers
+    
+  Scan (50,mSec,5,0)  '50 mSec = 20 Hz
+
+' Serial Data interface section using COM Ports
+' NOTE: ports are opened at the beginning of the program
+  
+   OSS_raw="  "+&H0D 'zero out OSS_raw between reads
+   SerialInRecord(Com1,OSS_raw,0,4,&H0D,OSSnbr,00)
+   OSS_count=OSS_raw
+   OSS_WWire(1)=2.*OSS_count/4095. 'output in meters, use.036 offset if necessary.. check all staffs...
+   OSS_WDepth(1)=OSS_WWire(1)+0.132   
+
+   OSS_raw="  "+&H0D 'zero out OSS_raw between reads
+   SerialInRecord(Com2,OSS_raw,0,4,&H0D,OSSnbr,00)
+   OSS_count=OSS_raw
+   OSS_WWire(2)=2.*OSS_count/4095. 'output in meters, use.036 offset if necessary.. check all staffs...
+   OSS_WDepth(2)=OSS_WWire(2)+0.132   
+   
+   OSS_raw="  "+&H0D 'zero out OSS_raw between reads
+   SerialInRecord(Com3,OSS_raw,0,4,&H0D,OSSnbr,00)
+   OSS_count=OSS_raw
+   OSS_WWire(3)=2.*OSS_count/4095. 'output in meters, use.036 offset if necessary.. check all staffs...
+   OSS_WDepth(3)=OSS_WWire(3)+0.132
+   
+   OSS_raw="  "+&H0D 'zero out OSS_raw between reads
+   SerialInRecord(Com4,OSS_raw,0,4,&H0D,OSSnbr,00)
+   OSS_count=OSS_raw
+   'OSS_WWire(4)=2.*OSS_count/4095. 'output in meters, use.036 offset if necessary.. check all staffs...
+   OSS_WWire(4)=1.5*OSS_count/4095. 'output in meters, use.036 offset if necessary.. check all staffs...
+    'OSS_WDepth(4)=OSS_WWire(4)+0.132   
+     'OSS_WDepth(4)=OSS_WWire(4)+0.356  corrected for new wave wire 
+     OSS_WDepth(4)=OSS_WWire(4)+0.384   
+  '------------------------------------------------------------------------------------- 
+  ' Measure the battery voltage
+    Battery (batt_volt)
+  'Measure the panel temperature
+    PanelTemp (PTemp,250)
+ 
+    ' Begin 20 Hz Output
+    CallTable (Elevation)
+    
+ NextScan
+  '-------------Time synch, Panel thermistor and Battery Voltage-----------------<< no SE
+  SlowSequence
+  Scan(5,min,5,0)
+    'TimerrMSec=NetworkTimeProtocol("192.168.1.243",0,1)
+    TimerrMSec=NetworkTimeProtocol("ntp1.rsmas.miami.edu",0,1)
+    'Begin AUX output
+    CallTable(AUX)
+  NextScan
+  '---------------------------------------------------------------------------------------
+  '---------------------------------------------------------------------------------------
+
+
+
+EndProg
+
+
