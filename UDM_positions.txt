@@ -9,8 +9,8 @@ x: alongtank, positive beachward
 y: cross-tank, positive toward lobby
 
 * Inlet: 1, x=-0.63, y=0
-* Center: 3, x=-0.31, y=0 # MEASURE AGAIN
 * Left: 2, x=0.86, y=0.56
+* Center: 3, x=0.31, y=0 # MEASURE AGAIN
 * Right: 4, x=0.93, y=-1.12
 * Beach 1: 5, x=2.14, y=0
 * Beach 2: 6, x=3.34, y=0
