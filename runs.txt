@@ -1,3 +1,5 @@
+All times UTC.
+
 2022/02/22
 ----------
 
@@ -6,11 +8,11 @@ No car models, only the wood base.
 Orthogonal waves; 21' mean water depth (unscaled)
 -------------------------------------------------
 
-1: a = 0.025, f = 0.71; start: 18:33 UTC, 5 minutes;
-2: a = 0.050, f = 0.50; start: 18:40 UTC, 2 minutes;
-3: a = 0.025, f = 1.00; start: 18:45 UTC, 2 minutes;
-4: a = 0.050, f = 0.71; start: 18:50 UTC, 2 minutes;
-5: a = 0.050, f = 0.36; start: 18:55 UTC, 2 minutes;
+1: a = 0.025, f = 0.71; start: 18:33, 5 minutes;
+2: a = 0.050, f = 0.50; start: 18:40, 2 minutes;
+3: a = 0.025, f = 1.00; start: 18:45, 2 minutes;
+4: a = 0.050, f = 0.71; start: 18:50, 2 minutes;
+5: a = 0.050, f = 0.36; start: 18:55, 2 minutes;
 
 2022/02/23
 ----------
@@ -19,64 +21,98 @@ Car models mounted.
 
 Orthogonal waves; 21' mean water depth (unscaled)
 -------------------------------------------------
-1: a = 0.03, f = 0.64; start: 15:33 UTC, 30 seconds;
-2: a = 0.03, f = 0.64; start: 15:34 UTC, 5 minutes;
-3: a = 0.06, f = 0.45; start: 15:49 UTC, 30 seconds;
-4: a = 0.06, f = 0.45; start: 15:52 UTC, 2 minutes;
+1: a = 0.03, f = 0.64; start: 15:33, 30 seconds;
+2: a = 0.03, f = 0.64; start: 15:34, 5 minutes;
+3: a = 0.06, f = 0.45; start: 15:49, 30 seconds;
+4: a = 0.06, f = 0.45; start: 15:52, 2 minutes;
 
 30 degree oblique waves; 21' mean water depth (unscaled)
 --------------------------------------------------------
-1: a = 0.03, f = 0.64; start: 16:06 UTC, 2 minutes;
-2: a = 0.03, f = 0.64; start: 16:11 UTC, 30 seconds;
-3: a = 0.06, f = 0.45; start: 16:14 UTC, 2 minutes;
-4: a = 0.06, f = 0.45; start: 16:18 UTC, 30 seconds;
+1: a = 0.03, f = 0.64; start: 16:06, 2 minutes;
+2: a = 0.03, f = 0.64; start: 16:11, 30 seconds;
+3: a = 0.06, f = 0.45; start: 16:14, 2 minutes;
+4: a = 0.06, f = 0.45; start: 16:18, 30 seconds;
 
 45 degree oblique waves; 21' mean water depth (unscaled)
 --------------------------------------------------------
-1: a = 0.06, f = 0.89; start: 16:38 UTC, 30 seconds;
-2: a = 0.06, f = 0.89; start: 16:42 UTC, 2 minutes; 
-3: a = 0.03, f = 0.89; start: 16:48 UTC, 30 seconds;
-4: a = 0.03, f = 0.89; start: 16:50 UTC, 2 minutes;
-5: a = 0.06, f = 0.64; start: 16:54 UTC, 30 seconds; 
-6: a = 0.06, f = 0.64; start: 16:57 UTC, 2 minutes;
+1: a = 0.06, f = 0.89; start: 16:38, 30 seconds;
+2: a = 0.06, f = 0.89; start: 16:42, 2 minutes; 
+3: a = 0.03, f = 0.89; start: 16:48, 30 seconds;
+4: a = 0.03, f = 0.89; start: 16:50, 2 minutes;
+5: a = 0.06, f = 0.64; start: 16:54, 30 seconds; 
+6: a = 0.06, f = 0.64; start: 16:57, 2 minutes;
 
 10 degree oblique waves; 21' mean water depth (unscaled)
 --------------------------------------------------------
-1: a = 0.06, f = 0.32; start: 17:21 UTC, 30 seconds;
-2: a = 0.06, f = 0.32; start: 17:24 UTC, 2 minutes; 
+1: a = 0.06, f = 0.32; start: 17:21, 30 seconds;
+2: a = 0.06, f = 0.32; start: 17:24, 2 minutes; 
 
 --------------------------------------------------------
 Surfrider
 
 10 degree oblique waves; 21' mean water depth (unscaled)
 --------------------------------------------------------
-1: a = 0.06, f = 0.32; start: 19:02 UTC, 30 seconds;
-2: a = 0.06, f = 0.32; start: 19:04 UTC, 2 minutes;
-3: a = 0.06, f = 0.32; start: 19:09 UTC, 30 seconds;
+1: a = 0.06, f = 0.32; start: 19:02, 30 seconds;
+2: a = 0.06, f = 0.32; start: 19:04, 2 minutes;
+3: a = 0.06, f = 0.32; start: 19:09, 30 seconds;
 
 30 degree oblique waves; 21' mean water depth (unscaled)
 --------------------------------------------------------
-1: a = 0.03, f = 0.64; start: 19:24 UTC, 30 seconds;
-2: a = 0.03, f = 0.64; start: 19:26 UTC, 1 minute;
-3: a = 0.06, f = 0.45; start: 19:29 UTC, 30 seconds;
-4: a = 0.06, f = 0.45; start: 19:31 UTC, 30 seconds;
+1: a = 0.03, f = 0.64; start: 19:24, 30 seconds;
+2: a = 0.03, f = 0.64; start: 19:26, 1 minute;
+3: a = 0.06, f = 0.45; start: 19:29, 30 seconds;
+4: a = 0.06, f = 0.45; start: 19:31, 30 seconds;
 
 45 degree oblique waves; 21' mean water depth (unscaled)
 --------------------------------------------------------
-1: a = 0.03, f = 0.89; start: 19:47 UTC, 30 seconds;
-2: a = 0.03, f = 0.89; start: 19:49 UTC, 30 seconds;
-3: a = 0.06, f = 0.64; start: 19:52 UTC, 30 seconds;
-4: a = 0.06, f = 0.64; start: 19:54 UTC, 30 seconds;
+1: a = 0.03, f = 0.89; start: 19:47, 30 seconds;
+2: a = 0.03, f = 0.89; start: 19:49, 30 seconds;
+3: a = 0.06, f = 0.64; start: 19:52, 30 seconds;
+4: a = 0.06, f = 0.64; start: 19:54, 30 seconds;
 
 ---------------------------------------------------------
 Brian's class
 
 45 degree oblique waves; 21' mean water depth (unscaled)
 --------------------------------------------------------
-1: a = 0.06, f = 0.64; start: 20:40 UTC
-2: a = 0.06, f = 0.64; start: 20:43 UTC
-3: a = 0.06, f = 0.64; start: 20:46 UTC
-4: a = 0.06, f = 0.64, angle 30 deg.; start: 20:54 UTC
+1: a = 0.06, f = 0.64; start: 20:40
+2: a = 0.06, f = 0.64; start: 20:43
+3: a = 0.06, f = 0.64; start: 20:46
+4: a = 0.06, f = 0.64, angle 30 deg.; start: 20:54
 5: JONSWAP, Hs = 0.08, Tp = 1; start: ?
-6: JONSWAP, Hs = 0.08, Tp = 1; shortcrested; start: 21:01 UTC
-7: a = 0.03, f = 0.89; start: 21:03 UTC
+6: JONSWAP, Hs = 0.08, Tp = 1; shortcrested; start: 21:01
+7: a = 0.03, f = 0.89; start: 21:03
+
+
+2022/03/04
+----------
+
+Mean water depth: 0.46 m (29' scaled at 1/20)
+
+Orthogonal
+
+f = 0.38 Hz for all runs
+
+1a. a = 0.03 m, start: 19:05
+1b. a = 0.03 m, start: 19:09
+1c. a = 0.03 m, start: 19:13
+
+2a. a = 0.06 m, start: 19:17
+2b. a = 0.06 m, start: 19:21
+2c. a = 0.06 m, start: 19:25
+
+3a. a = 0.09 m, start: 19:29
+3b. a = 0.09 m, start: 19:33
+3c. a = 0.09 m, start: 19:37
+
+4a. a = 0.12 m, start: 19:41
+
+Stopped with 0.12 m runs because of
+the banging noise in wavemaker.
+
+----------------------------
+45 deg. model
+
+5a. a = 0.09 m, start: 19:52
+5b. a = 0.09 m, start: 19:56
+5c. a = 0.09 m, start: 20:00
