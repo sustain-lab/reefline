@@ -11,9 +11,6 @@ import matplotlib
 
 matplotlib.rcParams.update({'font.size': 16})
 
-depth = 0.26 # 21', 1/25 scaling 
-#depth = 0.32 # 21', 1/20 scaling
-
 f = np.array([
     0.71, 0.5, 1, 0.71, 0.36,
     0.64, 0.45, 0.32, 0.32, 0.64,
@@ -115,13 +112,6 @@ udm_files = glob.glob('data/TOA5_SUSTAIN_ELEVx6d*')
 udm_files.sort()
 time, u1, u2, u3, u4, u5, u6 = read_udm_from_toa5(udm_files)
 
-#ww_files = glob.glob('data/TOA5_OSSwaveX4.elev*')
-#ww_files.sort()
-#_, data = read_wavewire_from_toa5(ww_files)
-#w1 = data['w4'] # wire 4 is on the inlet side
-#w2 = data['w3'] # wire 3 is on the beach side
-
-
 num_sensors = 6
 num_runs = len(runs_start)
 num_records = run_seconds * 20 + 1
@@ -135,15 +125,6 @@ for n, t1 in enumerate(runs_start):
     e1[n,:] = detrend(- u1[mask])
     e2[n,:] = detrend(- u5[mask])
 
-#eta = eta[:,:,tmask]
-#eta_smooth = np.zeros(eta.shape)
-#for n in range(num_runs):
-#    for m in range(num_sensors):
-#        eta_smooth[n,m,:] = running_mean(eta[n,m,:], 3)
-#        eta_smooth[n,m,:] -= np.mean(eta_smooth[n,m,(t >= 5) & (t <= 12)])
-
-
-#eta[eta < -0.1] = 0
 udm_mask = [0, 2, 4]
 x = np.array([-0.63, 0.31, 2.14])
 x -= x[1]
