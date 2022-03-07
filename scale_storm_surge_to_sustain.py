@@ -4,15 +4,14 @@ import numpy as np
 scale_factor = 1 / 20
 f2m = 1 / 3.28084
 
-depth = 21 # feet, no surge
-#depth = 29 # feet, surge
+#depth = 21 # feet, no surge
+depth = 29 # feet, surge
 
 conditions = [
-    {'Hs': 4, 'Tp': 7},  # Cold fronts (30 degrees)
-    {'Hs': 8, 'Tp': 10}, # Cold fronts (30 degrees)
-    {'Hs': 4, 'Tp': 5},  # Onshore 45 degrees
-    {'Hs': 8, 'Tp': 7},  # Onshore 45 degrees
-    {'Hs': 8, 'Tp': 14}  # Nor'easters (10 degrees)
+    {'Hs': 8, 'Tp': 11.7},
+    {'Hs': 12, 'Tp': 11.7},
+    {'Hs': 16, 'Tp': 11.7},
+    {'Hs': 20, 'Tp': 11.7},
 ]
 
 for case in conditions:
