@@ -87,7 +87,7 @@ Brian's class
 2022/03/04
 ----------
 
-Mean water depth: 0.46 m (29' scaled at 1/20)
+Mean water depth: 0.44 m (29' scaled at 1/20)
 
 Orthogonal
 
@@ -116,3 +116,32 @@ the banging noise in wavemaker.
 5a. a = 0.09 m, start: 19:52
 5b. a = 0.09 m, start: 19:56
 5c. a = 0.09 m, start: 20:00
+
+
+2022/03/07
+----------
+
+Mean water depth: 0.44 m (29' scaled at 1/20)
+
+Orthogonal
+
+f = 0.38 Hz for all runs
+
+1a. a = 0.03 m, start: 19:10
+1b. a = 0.03 m, start: 19:14
+1c. a = 0.03 m, start: 19:18
+
+2a. a = 0.06 m, start: 19:22
+2b. a = 0.06 m, start: 19:26
+2c. a = 0.06 m, start: 19:38
+
+3a. a = 0.09 m, start: 19:42 banging noise
+3b. a = 0.08 m, start: 19:46 less banging noise but still some
+3c. a = 0.07 m, start: 19:50 highest setting with no banging
+
+----------------------------
+45 deg. model
+
+4a. a = 0.07 m, start: 20:00
+4b. a = 0.07 m, start: 20:04
+4c. a = 0.07 m, start: 20:08
