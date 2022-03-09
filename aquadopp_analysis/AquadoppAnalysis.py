@@ -17,7 +17,13 @@ fileBase5 = ['OCT829', 'OCT728', 'OCT627', 'OCT526', 'OCT525', 'OCT424', 'OCT123
              'NOV911', 'NOV1712', 'NOV1713', 'NOV2214', 'NOV2316', 'NOV2917', 'NOV3018', 'DEC119', 
              'DEC120', 'DEC321', 'DEC622']
 
-#def findOtherAq(baseName):
+# def findOtherAq(data_dict1, data_dict2):
+#     data_dict1['find_other'] = 
+    
+
+
+#     return
+
     
 
 def addOrder(baseName, order):
@@ -66,19 +72,33 @@ def create_dict(base_filename, location='still needed'):
     for x in csv['DateTime']:
         DateTime_conv.append(datetime.strptime(x, "%m/%d/%Y %H:%M:%S"))
     DateTime_conv = np.array(DateTime_conv)
-    new_dict['DateTime'] = DateTime_conv
+    new_dict['datetime'] = DateTime_conv
+    #print(len(DateTime_conv))
+    new_dict['find_other'] = 'still needed'
 
     for i in range(0, len(headings)-1):
         depth_id = headings[i].split('(')[1].split(')')[0] 
+        # print(round((float(depth_id.split('m')[0])-0.145),3))
         new_dict[headings[i]] = {'a1': a1[:, i+2], 'a2': a2[:, i+2], 'a3': a3[:, i+2], 
                               'c1': c1[:, i+2], 'c2': c2[:, i+2], 'c3': c3[:, i+2],
                               'v1': v1[:, i+2], 'v2': v2[:, i+2], 'v3': v3[:, i+2],
-                              'avg_speed': csv[headings[i]], 'dtoADCP': float(depth_id.split('m')[0]) }
-        
+                              'avg_speed': csv[headings[i]], 'dtoADCP': round((float(depth_id.split('m')[0])-0.145),3) }
+        #print(len(v1[:, i+2]))                     
+    new_dict = velocityTotal(new_dict)    
     return new_dict
     
     
-
+def velocityTotal(data_dict):
+    headings = data_dict['headings']
+    for i in range(0, len(headings)-1):
+        velocity_total = []
+        for j in range(0, len(data_dict[headings[i]]['v3'])):
+            
+            velocity_total.append(np.sqrt((data_dict[headings[i]]['v1'][j]**2 + 
+                        data_dict[headings[i]]['v2'][j]**2+
+                        data_dict[headings[i]]['v3'][j]**2)))
+        data_dict[headings[i]]['vtotal'] = velocity_total
+    return data_dict
     
 
 
@@ -173,8 +193,6 @@ def OpenASCIIFile(filename):
     f = open(filename, 'r')
     data = np.genfromtxt(f)
     f.close()
-    #print(data.shape)
-
     return data
 
 def PlotAmplitude(data_dict):
@@ -187,61 +205,74 @@ def PlotAmplitude(data_dict):
     plt.ylabel('correlation 1')
     plt.xlabel('time')
 
-    
-
-# f = open(base_filename + '.hdr', 'r')
-    # data = f.read()
-    # f.close()
-    # cell_size = float(data.split("Cell size")[1].split('mm', 1)[0])/100
-    # cell_num = int(data.split("Number of cells")[1].split('A', 1)[0])
 
 def SectionData(data_dict, start, end):
     
-    DateTime = data_dict['DateTime']
+    DateTime = data_dict['datetime']
     
-    #whole_data = data_wanted
-    # start_index=min(DateTime_conv, key=lambda x: abs(x - start))
-    # end_index=min(DateTime_conv, key=lambda x: abs(x - end))
+    # print(DateTime)
+    # print(start)
     abs_deltas_from_target_date = np.absolute(DateTime - start)
     index_of_start = np.argmin(abs_deltas_from_target_date)
 
     abs_deltas_from_target_date = np.absolute(DateTime - end)
     index_of_end = np.argmin(abs_deltas_from_target_date)
-    # closest_date = all_dates[index_of_min_delta_from_target_date]
-
+    
     return index_of_start, index_of_end
 
 def PlotSection (uptank_dict, downtank_dict, desired_feature, bin_num, start = 0, run_time='nothing'):
     
-    #feature = []
     for data in [uptank_dict, downtank_dict]:
+        heading = data['headings']
         if (start!=0):
-            heading = data['headings']
+            
             end = start+timedelta(minutes=run_time)
             i_start, i_end = SectionData(data, start, end)
-            print(data['DateTime'][i_end])
+            print(data['datetime'][i_end])
             feature = data[heading[bin_num]][desired_feature][i_start:i_end]
-            plt.plot(data['DateTime'][i_start:i_end],feature/np.linalg.norm(feature), label = data['location'])
+            plt.plot(data['datetime'][i_start:i_end],feature/np.linalg.norm(feature), label = data['location'])
             plt.tick_params(axis = 'x', labelrotation=45)
             #plt.locator_params(axis = 'x', tight=True, nbins=30)
         else:
             feature.append(data[heading[bin_num]][desired_feature])
-    plt.title(uptank_dict['date'])
+    plt.title(uptank_dict['date'] + heading[bin_num])
     plt.xlabel('time of measurement')
     plt.ylabel('normalized ' + desired_feature)
     plt.legend()
-    #plt.locator_params(numticks=12)
-    #plt.locator_params(axis="x", nbins=4)
-    # plt.tick_params(axis = 'x', labelrotation=90)
-    # plt.locator_params(axis = 'x', tight=True, nbins=30)
-    # plt.plot(uptank_dict['DateTime'],feature[0])
-    # plt.plot(downtank_dict['DateTime'],feature[1])
 
+def runComparisonPlots(uptank_dict, downtank_dict, desired_dict, wave_cond, first_bin, title):
+    headingup = uptank_dict['headings']
+    headingdown = downtank_dict['headings']
+    fig, ax = plt.subplots(5, len(wave_cond), figsize =(50,40))
+    for i in range (0,5):
+        for j in range(0,len(wave_cond)):
+            #print(wave_cond[j][2])
+            start_i, end_i = SectionData(uptank_dict, wave_cond[j][2], wave_cond[j][3])
+            ax[i][j].plot(uptank_dict['datetime'][start_i:end_i], uptank_dict[headingup[first_bin+i]][desired_dict][start_i:end_i], label = uptank_dict['location'])
+            start_i, end_i = SectionData(downtank_dict, wave_cond[j][2], wave_cond[j][3])
+            ax[i][j].plot(downtank_dict['datetime'][start_i:end_i], downtank_dict[headingdown[first_bin+i]][desired_dict][start_i:end_i], label = downtank_dict['location'])
+            ax[i][j].set_title("Ts=" + str(wave_cond[j][0]) + " H=" + str(wave_cond[j][1]))
+            ax[i][j].tick_params(axis = 'x', labelrotation=45)
+            ax[i][j].set_ylabel(str(uptank_dict[headingup[first_bin+i]]['dtoADCP']) + ' m')
+            ax[i][j].legend()
+    fig.suptitle(title, y=0.9, fontsize = 20)
+    # fig.savefig(title,dpi=300)
+
+
+    # ax[1].plot(uptank_dict['datetime'], uptank_dict[headingup[3]][desired_dict])
+    # ax[1].plot(downtank_dict['datetime'], downtank_dict[headingdown[3]][desired_dict])
+    # ax[2].plot(uptank_dict['datetime'], uptank_dict[headingup[4]][desired_dict])
+    # ax[2].plot(downtank_dict['datetime'], downtank_dict[headingdown[4]][desired_dict])
+    # ax[3].plot(uptank_dict['datetime'], uptank_dict[headingup[5]][desired_dict])
+    # ax[3].plot(downtank_dict['datetime'], downtank_dict[headingdown[5]][desired_dict])
+    # ax[4].plot(uptank_dict['datetime'], uptank_dict[headingup[6]][desired_dict])
+    # ax[4].plot(downtank_dict['datetime'], downtank_dict[headingdown[6]][desired_dict])
+
+    
 
 """
 TODO:
 1) Figure out dict, not sure its in the right order
-2) Plot section function
 3) Compartison function to find other file at same time and tag them as the same
 4) Make pickle of things
 * 5) Velocity componets to total velocity
