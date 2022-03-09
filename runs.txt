@@ -145,3 +145,33 @@ f = 0.38 Hz for all runs
 4a. a = 0.07 m, start: 20:00
 4b. a = 0.07 m, start: 20:04
 4c. a = 0.07 m, start: 20:08
+
+
+2022/03/08
+----------
+
+No car models, only the wood base.
+This is the re-do of the baseline experiments.
+
+Orthogonal waves; 21' mean water depth (unscaled), 32 cm scaled
+-------------------------------------------------
+
+1a: a = 0.03, f = 0.64; start: 17:00
+1b: a = 0.03, f = 0.64; start: 17:04
+1c: a = 0.03, f = 0.64; start: 17:08
+
+2a: a = 0.06, f = 0.45; start: 17:12
+2b: a = 0.06, f = 0.45; start: 17:16
+2c: a = 0.06, f = 0.45; start: 17:20
+
+3a: a = 0.03, f = 0.89; start: 17:24
+3b: a = 0.03, f = 0.89; start: 17:28
+3c: a = 0.03, f = 0.89; start: 17:32
+
+4a: a = 0.06, f = 0.64; start: 17:36
+4b: a = 0.06, f = 0.64; start: 17:40
+4c: a = 0.06, f = 0.64; start: 17:44
+
+5a: a = 0.06, f = 0.32; start: 17:48
+5b: a = 0.06, f = 0.32; start: 17:52
+5c: a = 0.06, f = 0.32; start: 17:56
