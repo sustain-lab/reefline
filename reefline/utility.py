@@ -155,3 +155,10 @@ def scale_to_height(ust, Uz, z, zref):
     """Scales wind Uz at height z to zref."""
     VON_KARMAN = 0.4
     return Uz + ust / VON_KARMAN * np.log(zref / z)
+
+
+def write_to_csv(filename, time, e1, e2):
+    with open(filename, 'w') as f:
+        f.write('time,elevation_in,elevation_out\n')
+        for n, t in enumerate(time):
+            f.write('%.2f,%.4f,%.4f\n' % (t, e1[n], e2[n]))

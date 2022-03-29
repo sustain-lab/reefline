@@ -5,7 +5,7 @@ import numpy as np
 from reefline.dispersion import w2k
 from reefline.wavewire import read_wavewire_from_toa5
 from reefline.udm import read_udm_from_toa5
-from reefline.utility import power_spectrum, running_mean
+from reefline.utility import power_spectrum, running_mean, write_to_csv
 from scipy.signal import detrend
 import matplotlib
 
@@ -93,11 +93,11 @@ f.write('experiment,height,period,measured_height_in,measured_height_out,percent
 for n in range(num_runs):
 
     t = np.linspace(0, 30, num_records)
-    mask1 = (t >= 5) & (t <= 12)
+    mask1 = (t >= 5) & (t < 12)
     t1 = t[mask1]
 
-    t2 = t - time_shift[n]
-    mask2 = (t2 >= 5) & (t2 <= 12)
+    t2 = np.round(t - time_shift[n], 2)
+    mask2 = (t2 >= 5) & (t2 < 12)
     t2 = t2[mask2]
 
     e1s = running_mean(e1[n,:], 3)
@@ -108,18 +108,21 @@ for n in range(num_runs):
 
     hmax1 = np.max(w1) - np.min(w1)
     hmax2 = np.max(w2) - np.min(w2)
+    t1 -= t1[0]
 
     percent_change = (hmax2 - hmax1) / hmax1 * 100
+
+    write_to_csv('elevation_' + filenames[n] + '.csv', t1, w1, w2)
 
     fig = plt.figure(figsize=(8, 6))
     ax = fig.add_subplot(111)
     plt.plot([0, 12], [0, 0], 'k:')
     plt.plot(t1, w1, lw=2, label='Waves in')
-    plt.plot(t2, w2, lw=2, label='Waves out')
+    plt.plot(t1, w2, lw=2, label='Waves out')
     plt.legend(loc='upper left')
     plt.xlabel(r'Time [$s$]')
     plt.ylabel(r'$\eta$ [$m$]')
-    plt.xlim(5, 12)
+    plt.xlim(0, 7)
     plt.ylim(-0.06, 0.12)
     plt.title(titles[n])
     plt.grid()

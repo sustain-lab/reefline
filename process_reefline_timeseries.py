@@ -5,20 +5,20 @@ import numpy as np
 from reefline.dispersion import w2k
 from reefline.wavewire import read_wavewire_from_toa5
 from reefline.udm import read_udm_from_toa5
-from reefline.utility import power_spectrum, running_mean
+from reefline.utility import power_spectrum, running_mean, write_to_csv
 from scipy.signal import detrend
 import matplotlib
 
-matplotlib.rcParams.update({'font.size': 16})
+matplotlib.rcParams.update({'font.size': 14})
 
 f = np.array([
-    0.71, 0.5, 1, 0.71, 0.36,
+    #0.71, 0.5, 1, 0.71, 0.36,
     0.64, 0.45, 0.32, 0.32, 0.64,
     0.45, 0.45, 0.89, 0.89, 0.64 
 ])
 
 depth = np.array([
-    0.26, 0.26, 0.26, 0.26, 0.26, # 1/25 scaling
+    #0.26, 0.26, 0.26, 0.26, 0.26, # 1/25 scaling
     0.32, 0.32, 0.32, 0.32, 0.32, # 1/20 scaling
     0.32, 0.32, 0.32, 0.32, 0.32, # 1/20 scaling
 ])
@@ -30,11 +30,11 @@ Cp = omega / k
 # all 30-second runs
 runs_start = [
 
-    datetime(2022, 2, 22, 18, 33,  8), # a = 0.025, f = 0.71, baseline
-    datetime(2022, 2, 22, 18, 40, 13), # a = 0.050, f = 0.50, baseline
-    datetime(2022, 2, 22, 18, 45, 17), # a = 0.025, f = 1.00, baseline
-    datetime(2022, 2, 22, 18, 50, 12), # a = 0.050, f = 0.71, baseline
-    datetime(2022, 2, 22, 18, 55, 15), # a = 0.050, f = 0.36, baseline
+    #datetime(2022, 2, 22, 18, 33,  8), # a = 0.025, f = 0.71, baseline
+    #datetime(2022, 2, 22, 18, 40, 13), # a = 0.050, f = 0.50, baseline
+    #datetime(2022, 2, 22, 18, 45, 17), # a = 0.025, f = 1.00, baseline
+    #datetime(2022, 2, 22, 18, 50, 12), # a = 0.050, f = 0.71, baseline
+    #datetime(2022, 2, 22, 18, 55, 15), # a = 0.050, f = 0.36, baseline
 
     datetime(2022, 2, 23, 15, 32,  6), # a = 0.03, f = 0.64, orthogonal
     datetime(2022, 2, 23, 15, 49, 20), # a = 0.06, f = 0.45, orthogonal
@@ -50,11 +50,11 @@ runs_start = [
 ]
 
 titles = [
-    "Hs = 4 ft, Tp = 7 s, baseline",
-    "Hs = 8 ft, Tp = 10 s, baseline",
-    "Hs = 4 ft, Tp = 5 s, baseline",
-    "Hs = 8 ft, Tp = 7 s, baseline",
-    "Hs = 8 ft, Tp = 14 s, baseline",
+    #"Hs = 4 ft, Tp = 7 s, baseline",
+    #"Hs = 8 ft, Tp = 10 s, baseline",
+    #"Hs = 4 ft, Tp = 5 s, baseline",
+    #"Hs = 8 ft, Tp = 7 s, baseline",
+    #"Hs = 8 ft, Tp = 14 s, baseline",
     "Hs = 4 ft, Tp = 7 s, orthogonal",
     "Hs = 8 ft, Tp = 10 s, orthogonal",
     "Hs = 8 ft, Tp = 14 s, 10 deg. oblique",
@@ -68,11 +68,11 @@ titles = [
 ]
 
 filenames = [
-    '4ft_7s_baseline',
-    '8ft_10s_baseline',
-    '4ft_5s_baseline',
-    '8ft_7s_baseline',
-    '8ft_14s_baseline',
+    #'4ft_7s_baseline',
+    #'8ft_10s_baseline',
+    #'4ft_5s_baseline',
+    #'8ft_7s_baseline',
+    #'8ft_14s_baseline',
     '4ft_7s_orthogonal',
     '8ft_10s_orthogonal',
     '8ft_14s_10deg_a',
@@ -85,15 +85,17 @@ filenames = [
     '8ft_7s_45deg',
 ]
 
-height = [4, 8, 4, 8, 8, 4, 8, 8, 8, 4, 8, 8, 4, 4, 8]
-period = [7, 10, 5, 7, 14, 7, 10, 14, 14, 7, 10, 10, 5, 5, 7]
+height = [#4, 8, 4, 8, 8,
+    4, 8, 8, 8, 4, 8, 8, 4, 4, 8]
+period = [#7, 10, 5, 7, 14,
+    7, 10, 14, 14, 7, 10, 10, 5, 5, 7]
 
 experiment = [
-    'baseline',
-    'baseline',
-    'baseline',
-    'baseline',
-    'baseline',
+    #'baseline',
+    #'baseline',
+    #'baseline',
+    #'baseline',
+    #'baseline',
     'model_orthogonal',
     'model_orthogonal',
     'model_10deg',
@@ -108,7 +110,7 @@ experiment = [
 
 run_seconds = 30
 
-udm_files = glob.glob('data/TOA5_SUSTAIN_ELEVx6d*')
+udm_files = glob.glob('data/udm/TOA5_SUSTAIN_ELEVx6d*')
 udm_files.sort()
 time, u1, u2, u3, u4, u5, u6 = read_udm_from_toa5(udm_files)
 
@@ -138,11 +140,11 @@ f.write('experiment,height,period,measured_height_in,measured_height_out,percent
 for n in range(num_runs):
 
     t = np.linspace(0, 30, num_records)
-    mask1 = (t >= 5) & (t <= 12)
+    mask1 = (t >= 5) & (t < 12)
     t1 = t[mask1]
 
-    t2 = t - time_shift[n]
-    mask2 = (t2 >= 5) & (t2 <= 12)
+    t2 = np.round(t - time_shift[n], 2)
+    mask2 = (t2 >= 5) & (t2 < 12)
     t2 = t2[mask2]
 
     e1s = running_mean(e1[n,:], 3)
@@ -153,6 +155,9 @@ for n in range(num_runs):
 
     hmax1 = np.max(w1) - np.min(w1)
     hmax2 = np.max(w2) - np.min(w2)
+    t1 -= t1[0]
+
+    write_to_csv('elevation_' + filenames[n] + '.csv', t1, w1, w2)
 
     percent_change = (hmax2 - hmax1) / hmax1 * 100
 
@@ -160,11 +165,11 @@ for n in range(num_runs):
     ax = fig.add_subplot(111)
     plt.plot([0, 12], [0, 0], 'k:')
     plt.plot(t1, w1, lw=2, label='Waves in')
-    plt.plot(t2, w2, lw=2, label='Waves out')
+    plt.plot(t1, w2, lw=2, label='Waves out')
     plt.legend(loc='upper left')
     plt.xlabel(r'Time [$s$]')
     plt.ylabel(r'$\eta$ [$m$]')
-    plt.xlim(5, 12)
+    plt.xlim(0, 7)
     plt.ylim(-0.06, 0.1)
     plt.title(titles[n])
     plt.grid()
