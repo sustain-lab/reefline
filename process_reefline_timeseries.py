@@ -12,13 +12,11 @@ import matplotlib
 matplotlib.rcParams.update({'font.size': 14})
 
 f = np.array([
-    #0.71, 0.5, 1, 0.71, 0.36,
     0.64, 0.45, 0.32, 0.32, 0.64,
     0.45, 0.45, 0.89, 0.89, 0.64 
 ])
 
 depth = np.array([
-    #0.26, 0.26, 0.26, 0.26, 0.26, # 1/25 scaling
     0.32, 0.32, 0.32, 0.32, 0.32, # 1/20 scaling
     0.32, 0.32, 0.32, 0.32, 0.32, # 1/20 scaling
 ])
@@ -29,12 +27,6 @@ Cp = omega / k
 
 # all 30-second runs
 runs_start = [
-
-    #datetime(2022, 2, 22, 18, 33,  8), # a = 0.025, f = 0.71, baseline
-    #datetime(2022, 2, 22, 18, 40, 13), # a = 0.050, f = 0.50, baseline
-    #datetime(2022, 2, 22, 18, 45, 17), # a = 0.025, f = 1.00, baseline
-    #datetime(2022, 2, 22, 18, 50, 12), # a = 0.050, f = 0.71, baseline
-    #datetime(2022, 2, 22, 18, 55, 15), # a = 0.050, f = 0.36, baseline
 
     datetime(2022, 2, 23, 15, 32,  6), # a = 0.03, f = 0.64, orthogonal
     datetime(2022, 2, 23, 15, 49, 20), # a = 0.06, f = 0.45, orthogonal
@@ -50,11 +42,6 @@ runs_start = [
 ]
 
 titles = [
-    #"Hs = 4 ft, Tp = 7 s, baseline",
-    #"Hs = 8 ft, Tp = 10 s, baseline",
-    #"Hs = 4 ft, Tp = 5 s, baseline",
-    #"Hs = 8 ft, Tp = 7 s, baseline",
-    #"Hs = 8 ft, Tp = 14 s, baseline",
     "Hs = 4 ft, Tp = 7 s, orthogonal",
     "Hs = 8 ft, Tp = 10 s, orthogonal",
     "Hs = 8 ft, Tp = 14 s, 10 deg. oblique",
@@ -170,7 +157,7 @@ for n in range(num_runs):
     plt.xlabel(r'Time [$s$]')
     plt.ylabel(r'$\eta$ [$m$]')
     plt.xlim(0, 7)
-    plt.ylim(-0.06, 0.1)
+    plt.ylim(-0.06, 0.12)
     plt.title(titles[n])
     plt.grid()
     plt.savefig('time_series_%s.png' % filenames[n])
