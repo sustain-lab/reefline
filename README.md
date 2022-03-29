@@ -1,7 +1,6 @@
 # reefline
 
 Code and data in support of the Reefline experiment.
-Data is included in this repository.
 
 ## Getting started
 
