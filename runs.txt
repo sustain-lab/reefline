@@ -188,23 +188,23 @@ Orthogonal
 
 f = 0.38 Hz for all runs
 
-1a. a = 0.03 m, start: 5:05
-1b. a = 0.03 m, start: 5:09
-1c. a = 0.03 m, start: 5:13:10
+1a. a = 0.03 m, start: 17:05
+1b. a = 0.03 m, start: 17:09
+1c. a = 0.03 m, start: 17:13:10
 
-2a. a = 0.06 m, start: 5:17
-2b. a = 0.06 m, start: 5:21
-2c. a = 0.06 m, start: 5:25
+2a. a = 0.06 m, start: 17:17
+2b. a = 0.06 m, start: 17:21
+2c. a = 0.06 m, start: 17:25
 
 ----------------------------
 45 deg. model
 
 f = 0.38 Hz for all runs
 
-3a. a = 0.03 m, start: 5:37
-3b. a = 0.03 m, start: 5:41
-3c. a = 0.03 m, start: 5:45
+3a. a = 0.03 m, start: 17:37
+3b. a = 0.03 m, start: 17:41
+3c. a = 0.03 m, start: 17:45
 
-4a. a = 0.06 m, start: 5:49
-4b. a = 0.06 m, start: 5:53
-4c. a = 0.06 m, start: 5:57
+4a. a = 0.06 m, start: 17:49
+4b. a = 0.06 m, start: 17:53
+4c. a = 0.06 m, start: 17:57
