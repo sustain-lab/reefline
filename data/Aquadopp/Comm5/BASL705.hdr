@@ -1,0 +1,346 @@
+[C:\Users\SUSTAIN DAQ\Desktop\Reefline-Feb2022\Aquadopp_20220304\Comm5\BASL705.PRF]
+---------------------------------------------------------------------
+Number of measurements                6624
+Number of checksum errors             0
+Time of first measurement             3/9/2022 4:55:11 PM
+Time of last measurement              3/9/2022 5:59:10 PM
+
+User setup
+---------------------------------------------------------------------
+Measurement/Burst interval            300 sec
+Cell size                             7 mm
+Orientation                           UPLOOKING SHALLOW WATER
+Distance to surface                   0.40 m
+Extended velocity range               OFF
+Pulse distance (Lag1)                 0.20 m
+Pulse distance (Lag2)                 0.00 m
+Profile range                         0.13 m
+Horizontal velocity range             1.54 m/s
+Vertical velocity range               0.65 m/s
+Number of cells                       19
+Average interval                      1 sec
+Blanking distance                     0.031 m
+Measurement load                      93 %
+Burst sampling                        ON
+Samples per burst                     512
+Sampling rate                         2 Hz
+Compass update rate                   1 sec
+Analog input 1                        NONE
+Analog input 2                        NONE
+Power output                          DISABLED
+Powerlevel first ping                 HIGH-
+Powerlevel ping 2                     HIGH
+Coordinate system                     XYZ
+Sound speed                           MEASURED
+Salinity                              0.0 ppt
+Number of beams                       3
+Number of pings per burst             19
+Software version                      1.11.03
+Deployment name                       BASL7
+Wrap mode                             OFF
+Deployment time                       3/9/2022 4:54:49 PM
+Comments                              Downtank, 45 cm single row of cars run2
+System1                               1
+System2                               6
+System3                               1
+System4                               253
+System5                               256
+System9                               32
+System10                              0
+System11                              0
+System12                              0
+System13                              0
+System14                              1
+System16                              19
+System17                              293
+System22                              3600
+System28                              1
+System29                              1
+System30                              20
+System31                              15087 15117 15147 15176
+System32 (PhaseToVel1)                1302
+System33 (Ua1)                        32768
+System34 (Uah1)                       16384
+System35 (PhaseToVel2)                1
+System36 (Ua2)                        1
+System37 (Uah2)                       1
+System38 (Lag1)                       32
+System39 (Lag2)                       0
+System40 (T1Lag2)                     1
+System41 (T2Lag2)                     6
+System42 (T3Lag2)                     1
+System42                              0
+System43                              30
+System44                              0
+System45                              1
+Start command                         Serial output with recorder
+CRC download                          ON
+
+Hardware configuration
+---------------------------------------------------------------------
+Serial number                         AQD 9821
+Hardware revision                     4 (E)
+Recorder size                         3926 MByte
+Firmware version                      3.19 HR
+Velocity range                        NORMAL
+Power output                          12V
+Sync signal data out delay            0 sec
+Sync signal power down delay          0 sec
+ProLog ID                             274
+ProLog firmware version               4.22
+SD Card Inserted                      YES
+SD Card Ready                         YES
+SD Card Write protected               NO
+SD Card Type                          SDHC
+SD Card Supported                     YES
+
+Head configuration
+---------------------------------------------------------------------
+Pressure sensor                       YES
+Compass                               YES
+Tilt sensor                           YES
+System 1                              1
+Head frequency                        2000 kHz
+Serial number                         ASP 4481
+Transformation matrix                 1.5774 -0.7891 -0.7891
+                                      0.0000 -1.3662 1.3662
+                                      0.3677 0.3677 0.3677
+Magnetometer calibration matrix       0.9567 -0.0123 -0.0031
+                                      -0.0123 0.9837 -0.0048
+                                      -0.0037 -0.0132 1.0000
+Compass hard iron calibration         148 -187 31
+Pressure sensor calibration           0 0 3006 15138
+Number of beams                       3
+System5                               25 25 25 0
+System7                               -15443 -1596 11215 490
+                                      -14768 -247 11282 -35
+System8                               1 0 0
+                                      0 -1 0
+                                      0 0 -1
+System9                               1 0 0
+                                      0 1 0
+                                      0 0 1
+System10                              0 1 -1 0
+System11                              0 1 1 0
+System13                              1481 259 7128 10855
+System14                              -15915 -709 11044 -157
+                                      -14818 -53 10982 40
+System15                              31347 -402 -102 -402
+                                      32232 -157 -122 -434
+                                      32767 148 -187 31
+                                      0 0 0 0
+System16                              0 0 0 0
+System17                              4550
+System18                              3600
+System19                              3600
+System20                              10000
+
+
+Current profile cell center distances from transducer head.
+Distances are in meters at nominal speed of sound (1500 m/s).
+       Beam    Vertical
+---------------------------------------------------------------------
+  1    0.042    0.038
+  2    0.050    0.045
+  3    0.058    0.052
+  4    0.065    0.059
+  5    0.073    0.066
+  6    0.081    0.073
+  7    0.088    0.080
+  8    0.096    0.087
+  9    0.104    0.094
+ 10    0.112    0.101
+ 11    0.119    0.108
+ 12    0.127    0.115
+ 13    0.135    0.122
+ 14    0.142    0.129
+ 15    0.150    0.136
+ 16    0.158    0.143
+ 17    0.165    0.150
+ 18    0.173    0.157
+ 19    0.181    0.164
+
+Data file format
+---------------------------------------------------------------------
+[C:\Users\SUSTAIN DAQ\Desktop\Reefline-Feb2022\Aquadopp_20220304\Comm5\BASL705.v1]
+ 1   Burst counter
+ 2   Ensemble counter
+ 3   Velocity Cell 1 (Beam1|X|East)   (m/s)
+ 4   Velocity Cell 2 (Beam1|X|East)   (m/s)
+     .
+     .
+ n   Velocity Cell n (Beam1|X|East)   (m/s)
+
+---------------------------------------------------------------------
+[C:\Users\SUSTAIN DAQ\Desktop\Reefline-Feb2022\Aquadopp_20220304\Comm5\BASL705.v2]
+ 1   Burst counter
+ 2   Ensemble counter
+ 3   Velocity Cell 1 (Beam2|Y|North)  (m/s)
+ 4   Velocity Cell 2 (Beam2|Y|North)  (m/s)
+     .
+     .
+ n   Velocity Cell n (Beam2|Y|North)  (m/s)
+
+---------------------------------------------------------------------
+[C:\Users\SUSTAIN DAQ\Desktop\Reefline-Feb2022\Aquadopp_20220304\Comm5\BASL705.v3]
+ 1   Burst counter
+ 2   Ensemble counter
+ 3   Velocity Cell 1 (Beam3|Z|Up)     (m/s)
+ 4   Velocity Cell 2 (Beam3|Z|Up)     (m/s)
+     .
+     .
+ n   Velocity Cell n (Beam3|Z|Up)     (m/s)
+
+---------------------------------------------------------------------
+[C:\Users\SUSTAIN DAQ\Desktop\Reefline-Feb2022\Aquadopp_20220304\Comm5\BASL705.hr2]
+ 1   Month                            (1-12)
+ 2   Day                              (1-31)
+ 3   Year
+ 4   Hour                             (0-23)
+ 5   Minute                           (0-59)
+ 6   Second                           (0-59.999)
+ 7   Velocity (Beam1)                 (m/s)
+ 8   Velocity (Beam2)                 (m/s)
+ 9   Velocity (Beam3)                 (m/s)
+10   Amplitude (Beam1)                (counts)
+11   Amplitude (Beam2)                (counts)
+12   Amplitude (Beam3)                (counts)
+13   Correlation (Beam1)              (%)
+14   Correlation (Beam2)              (%)
+15   Correlation (Beam3)              (%)
+
+---------------------------------------------------------------------
+[C:\Users\SUSTAIN DAQ\Desktop\Reefline-Feb2022\Aquadopp_20220304\Comm5\BASL705.a1]
+ 1   Burst counter
+ 2   Ensemble counter
+ 3   Amplitude Cell 1 (Beam1)         (counts)
+ 4   Amplitude Cell 2 (Beam1)         (counts)
+     .
+     .
+ n   Amplitude Cell n (Beam1)         (counts)
+
+---------------------------------------------------------------------
+[C:\Users\SUSTAIN DAQ\Desktop\Reefline-Feb2022\Aquadopp_20220304\Comm5\BASL705.a2]
+ 1   Burst counter
+ 2   Ensemble counter
+ 3   Amplitude Cell 1 (Beam2)         (counts)
+ 4   Amplitude Cell 2 (Beam2)         (counts)
+     .
+     .
+ n   Amplitude Cell n (Beam2)         (counts)
+
+---------------------------------------------------------------------
+[C:\Users\SUSTAIN DAQ\Desktop\Reefline-Feb2022\Aquadopp_20220304\Comm5\BASL705.a3]
+ 1   Burst counter
+ 2   Ensemble counter
+ 3   Amplitude Cell 1 (Beam3)         (counts)
+ 4   Amplitude Cell 2 (Beam3)         (counts)
+     .
+     .
+ n   Amplitude Cell n (Beam3)         (counts)
+
+---------------------------------------------------------------------
+[C:\Users\SUSTAIN DAQ\Desktop\Reefline-Feb2022\Aquadopp_20220304\Comm5\BASL705.c1]
+ 1   Burst counter
+ 2   Ensemble counter
+ 3   Correlation Cell 1 (Beam1)       (%)
+ 4   Correlation Cell 2 (Beam1)       (%)
+     .
+     .
+ n   Correlation Cell n (Beam1)       (%)
+
+---------------------------------------------------------------------
+[C:\Users\SUSTAIN DAQ\Desktop\Reefline-Feb2022\Aquadopp_20220304\Comm5\BASL705.c2]
+ 1   Burst counter
+ 2   Ensemble counter
+ 3   Correlation Cell 1 (Beam2)       (%)
+ 4   Correlation Cell 2 (Beam2)       (%)
+     .
+     .
+ n   Correlation Cell n (Beam2)       (%)
+
+---------------------------------------------------------------------
+[C:\Users\SUSTAIN DAQ\Desktop\Reefline-Feb2022\Aquadopp_20220304\Comm5\BASL705.c3]
+ 1   Burst counter
+ 2   Ensemble counter
+ 3   Correlation Cell 1 (Beam3)       (%)
+ 4   Correlation Cell 2 (Beam3)       (%)
+     .
+     .
+ n   Correlation Cell n (Beam3)       (%)
+
+---------------------------------------------------------------------
+[C:\Users\SUSTAIN DAQ\Desktop\Reefline-Feb2022\Aquadopp_20220304\Comm5\BASL705.sen]
+ 1   Month                            (1-12)
+ 2   Day                              (1-31)
+ 3   Year
+ 4   Hour                             (0-23)
+ 5   Minute                           (0-59)
+ 6   Second                           (0-59.999)
+ 7   Burst counter
+ 8   Ensemble counter
+ 9   Error code
+10   Status code
+11   Battery voltage                  (V)
+12   Soundspeed                       (m/s)
+13   Heading                          (degrees)
+14   Pitch                            (degrees)
+15   Roll                             (degrees)
+16   Pressure                         (dbar)
+17   Temperature                      (degrees C)
+18   Analog input 1
+19   Analog input 2
+
+---------------------------------------------------------------------
+[C:\Users\SUSTAIN DAQ\Desktop\Reefline-Feb2022\Aquadopp_20220304\Comm5\BASL705.dat]
+Header...
+ 1   Month                            (1-12)
+ 2   Day                              (1-31)
+ 3   Year
+ 4   Hour                             (0-23)
+ 5   Minute                           (0-59)
+ 6   Second                           (0-59)
+ 7   Error code
+ 8   Status code
+ 9   Battery voltage                  (V)
+10   Soundspeed                       (m/s)
+11   Heading                          (degrees)
+12   Pitch                            (degrees)
+13   Roll                             (degrees)
+14   Pressure                         (dbar)
+15   Temperature                      (degrees C)
+16   Analog input 1
+17   Analog input 2
+18   Number of beams
+19   Number of cells
+
+Velocity profile...
+ 1   Cell number
+ 2   Cell position                    (m)
+ 3   Velocity (Beam1|X|East)          (m/s)
+ 4   Velocity (Beam2|Y|North)         (m/s)
+ 5   Velocity (Beam3|Z|Up)            (m/s)
+ 6   Amplitude (Beam1)                (counts)
+ 7   Amplitude (Beam2)                (counts)
+ 8   Amplitude (Beam3)                (counts)
+ 9   Correlation (Beam1)              (%)
+ 10  Correlation (Beam2)              (%)
+ 11  Correlation (Beam3)              (%)
+ 12  Speed                            (m/s)
+ 13  Direction                        (degrees)
+ 14  Spare
+
+---------------------------------------------------------------------
+[C:\Users\SUSTAIN DAQ\Desktop\Reefline-Feb2022\Aquadopp_20220304\Comm5\BASL705.csv]
+ 1   DateTime                         
+ 2   Battery voltage                  (V)
+ 3   Heading                          (degrees)
+ 4   Pitch                            (degrees)
+ 5   Roll                             (degrees)
+ 6   Pressure                         (dbar)
+ 7   Temperature                      (degrees C)
+ 8   Analog input 1
+ 9   Analog input 2
+10   Speed cell 1                     (m/s)
+11   Direction cell 1                 (degrees)
+10-11 repeated for all cells in profile.
