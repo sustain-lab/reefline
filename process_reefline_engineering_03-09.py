@@ -29,6 +29,58 @@ def despike(x, xmax=1.55, xmin=1.25):
             y[n] = 0.5 * (x[n-1] + x[n+1])
     return y
 
+def plot_velocity_profile(time, u, v, w, z, elev_time, elev, start_time, end_time, \
+    height, period, angle, run, position):
+
+    fig = plt.figure(figsize=(8, 12))
+    ax1, ax2, ax3, ax4 = axes = [
+        plt.subplot2grid((4, 1), (0, 0)),
+        plt.subplot2grid((4, 1), (1, 0)),
+        plt.subplot2grid((4, 1), (2, 0)),
+        plt.subplot2grid((4, 1), (3, 0))
+    ]
+
+    im = ax1.contourf(time, z, v.T, np.arange(-0.5, 0.55, 0.05), cmap=cm.bwr)
+    im = ax2.contourf(time, z, u.T, np.arange(-0.5, 0.55, 0.05), cmap=cm.bwr)
+    im = ax3.contourf(time, z, w.T, np.arange(-0.5, 0.55, 0.05), cmap=cm.bwr)
+    fig.colorbar(im, ax=ax3, shrink=0.8, ticks=np.arange(-0.5, 0.6, 0.1), location='bottom')
+    
+    ax1.contour(time, z, v.T, [0], linewidths=0.2, colors='k')
+    ax2.contour(time, z, u.T, [0], linewidths=0.2, colors='k')
+    ax3.contour(time, z, w.T, [0], linewidths=0.2, colors='k')
+
+    ax4.plot(elev_time, elev, 'k-', label='Elevation')
+    ax4.plot(time, np.mean(v, axis=1), label='u-vel.')
+    ax4.plot(time, np.mean(u, axis=1), label='v-vel.')
+    ax4.plot(time, np.mean(w, axis=1), label='w-vel.')
+    ax4.legend(ncol=4)
+    ax4.grid()
+
+    # Plot theoretical surface vel. based on linear wave theory
+    u_max = omega * amplitude[n]
+    ax4.plot([runs_start[n], runs_start[n] + run_duration], [u_max, u_max], 'k--')
+    ax4.plot([runs_start[n], runs_start[n] + run_duration], [-u_max, -u_max], 'k--')
+
+    for ax in axes:
+        ax.set_xlim(runs_start[n], runs_start[n] + run_duration)
+    
+    for ax in axes[:-1]:
+        ax.set_xticklabels([])
+        ax.set_ylabel('z [m]')
+    
+    ax4.set_ylabel(r'$\eta$ [m], v [m/s]')
+    ax4.set_ylim(-0.3, 0.3)
+
+    ax1.set_title('Along-tank velocity [m/s]')
+    ax2.set_title('Cross-tank velocity [m/s]')
+    ax3.set_title('Vertical velocity [m/s]')
+
+    ax4.set_xlabel('Time [UTC]')
+    fig.suptitle(position + ' ' + title(height, period, angle))
+    plt.savefig('velocity_' + position.lower() + '_%s.png' % filename(height, period, angle, run))
+    plt.close()
+
+
 f = 0.38
 depth = 0.44
 omega = 2 * np.pi * f
@@ -40,6 +92,7 @@ height = [4, 4, 4, 8, 8, 8, 4, 4, 4, 8, 8, 8]
 run = ['a', 'b', 'c', 'a', 'b', 'c', 'a', 'b', 'c', 'a', 'b', 'c']
 period = 14
 angle = 6 * ['orthogonal'] + 6 * ['45 deg. oblique']
+amplitude = np.array(2 * (3 * [0.03] + 3 * [0.06]))
 
 # all 30-second runs
 runs_start = [
@@ -176,45 +229,10 @@ run_duration = timedelta(seconds=20)
 z = np.array(cell_distance) + 0.1 # 0.1 m is the offset of sensor head from the bottom
 
 for n in range(num_runs):
+    plot_velocity_profile(time1, u1, v1, w1, z, time, elev1, \
+                          runs_start[n], runs_start[n] + run_duration, \
+                          height[n], period, angle[n], run[n], 'upwave')
+    plot_velocity_profile(time2, u2, v2, w2, z, time, elev2, \
+                          runs_start[n], runs_start[n] + run_duration, \
+                          height[n], period, angle[n], run[n], 'downwave')
 
-    fig = plt.figure(figsize=(8, 16))
-    ax1, ax2, ax3, ax4 = axes = [
-        plt.subplot2grid((4, 1), (0, 0)),
-        plt.subplot2grid((4, 1), (1, 0)),
-        plt.subplot2grid((4, 1), (2, 0)),
-        plt.subplot2grid((4, 1), (3, 0))
-    ]
-
-    im = ax1.contourf(time1, z, v1.T, np.arange(-0.5, 0.55, 0.05), cmap=cm.bwr)
-    im = ax2.contourf(time1, z, u1.T, np.arange(-0.5, 0.55, 0.05), cmap=cm.bwr)
-    im = ax3.contourf(time1, z, w1.T, np.arange(-0.5, 0.55, 0.05), cmap=cm.bwr)
-    fig.colorbar(im, ax=ax3, shrink=0.8, ticks=np.arange(-0.5, 0.6, 0.1), location='bottom')
-    
-    ax1.contour(time1, z, v1.T, [0], linewidths=0.2, colors='k')
-    ax2.contour(time1, z, u1.T, [0], linewidths=0.2, colors='k')
-    ax3.contour(time1, z, w1.T, [0], linewidths=0.2, colors='k')
-
-    ax4.plot(time, elev1, 'k-', label='Elevation')
-    ax4.plot(time1, np.mean(v1, axis=1), label='u-vel.')
-    ax4.plot(time1, np.mean(u1, axis=1), label='v-vel.')
-    ax4.plot(time1, np.mean(w1, axis=1), label='w-vel.')
-    ax4.legend(ncol=4)
-    ax4.grid()
-
-    for ax in axes:
-        ax.set_xlim(runs_start[n], runs_start[n] + run_duration)
-    
-    for ax in axes[:-1]:
-        ax.set_xticklabels([])
-        ax.set_ylabel('z [m]')
-    
-    ax4.set_ylabel(r'$\eta$ [m], v [m/s]')
-
-    ax1.set_title('Along-tank velocity [m/s]')
-    ax2.set_title('Cross-tank velocity [m/s]')
-    ax3.set_title('Vertical velocity [m/s]')
-
-    ax4.set_xlabel('Time [UTC]')
-    fig.suptitle(title(height[n], period, angle[n]))
-    plt.savefig('velocity_%s.png' % filename(height[n], period, angle[n], run[n]))
-    plt.close()
