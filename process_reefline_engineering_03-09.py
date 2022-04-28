@@ -12,6 +12,8 @@ from scipy.signal import detrend
 import matplotlib
 
 matplotlib.rcParams.update({'font.size': 14})
+    
+von_karman = 0.4
 
 def title(height, period, angle):
     return 'Hs = %i ft, Tp = %i s, %s' % (height, period, angle)
@@ -78,6 +80,37 @@ def plot_velocity_profile(time, u, v, w, z, elev_time, elev, start_time, end_tim
     ax4.set_xlabel('Time [UTC]')
     fig.suptitle(position + ' ' + title(height, period, angle))
     plt.savefig('velocity_' + position.lower() + '_%s.png' % filename(height, period, angle, run))
+    plt.close()
+
+
+def plot_mean_velocity_profile(time, u, v, w, z, elev_time, elev, start_time, end_time, \
+    height, period, angle, run, position):
+
+    mask = (time > runs_start[n]) & (time <= runs_start[n] + run_duration)
+    vel_mean = np.mean(np.sqrt(u**2 + v**2)[mask].T, axis=1)
+    fit = np.polyfit(z, vel_mean, 1)
+    logfit = np.polyfit(np.log(z), vel_mean, 1)
+    ust = von_karman * logfit[0]
+    U = np.mean(vel_mean)
+    CD = ust**2 / U**2
+
+    fig = plt.figure(figsize=(8, 6))
+    ax = fig.add_subplot(111)
+    ax.semilogy(vel_mean, z, marker='o')
+    ax.semilogy(np.polyval(fit, z), z, 'k--')
+    ax.grid()
+    ax.set_xlabel('Horizontal velocity [m/s]')
+    ax.set_ylabel('Distance from depth [m]')
+    ax.text(0.02, 0.94, r'$U$ = %.2f m/s' % U, ha='left', va='bottom',
+            transform=ax.transAxes, fontsize=16)
+    ax.text(0.02, 0.88, r'$u_*$ = %.2f m/s' % ust, ha='left', va='bottom',
+            transform=ax.transAxes, fontsize=16)
+    ax.text(0.02, 0.82, r'$C_D$ = %.3f' % CD, ha='left', va='bottom',
+            transform=ax.transAxes, fontsize=16)
+    ax.set_xlim(0, 0.4)
+    fig.subplots_adjust(left=0.2)
+    fig.suptitle(position + ' ' + title(height, period, angle))
+    plt.savefig('mean_profile_' + position.lower() + '_%s.png' % filename(height, period, angle, run))
     plt.close()
 
 
@@ -224,6 +257,9 @@ u2 = np.clip(read_aquadopp_velocity(aquadopp2_path + '.v1'), -0.499, 0.499)
 v2 = np.clip(read_aquadopp_velocity(aquadopp2_path + '.v2'), -0.499, 0.499)
 w2 = np.clip(read_aquadopp_velocity(aquadopp2_path + '.v3'), -0.499, 0.499)
 
+vel1 = np.sqrt(u1**2 + v1**2)
+vel2 = np.sqrt(u2**2 + v2**2)
+
 run_duration = timedelta(seconds=20)
 
 z = np.array(cell_distance) + 0.1 # 0.1 m is the offset of sensor head from the bottom
@@ -236,3 +272,9 @@ for n in range(num_runs):
                           runs_start[n], runs_start[n] + run_duration, \
                           height[n], period, angle[n], run[n], 'downwave')
 
+    plot_mean_velocity_profile(time1, u1, v1, w1, z, time, elev1, \
+                          runs_start[n], runs_start[n] + run_duration, \
+                          height[n], period, angle[n], run[n], 'upwave')
+    plot_mean_velocity_profile(time2, u2, v2, w2, z, time, elev2, \
+                          runs_start[n], runs_start[n] + run_duration, \
+                          height[n], period, angle[n], run[n], 'downwave')
